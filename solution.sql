@@ -26,11 +26,12 @@ WHERE rental_rate = (SELECT MIN(rental_rate) FROM film) AND replacement_cost = (
 ORDER BY rental_rate ASC, replacement_cost ASC;*/
 
 -- Q4
-SELECT customer_id, COUNT(customer_id) AS "Num. of Shopping"
+SELECT first_name, last_name, customer.customer_id, COUNT(*) 
 FROM payment
-GROUP BY customer_id
-ORDER BY COUNT(customer_id) DESC
-LIMIT 1;
+JOIN customer ON payment.customer_id = customer.customer_id
+GROUP BY customer.customer_id
+ORDER BY COUNT(*) DESC
+LIMIT 5;
 
 
 
